@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -12,14 +11,12 @@ const Welcome = () => {
   return (
     <main className="flex flex-col mt-5 justify-center items-center font-news">
       {/* SEO Meta Tags */}
-      <Helmet>
-        <title>Welcome | EGX Tracker</title>
-        <meta
-          name="description"
-          content="Track the Egyptian Stock Market (EGX) in real time. Stay informed with live data and expert analysis."
-        />
-      </Helmet>
-
+      <title>Welcome | EGX Tracker</title>
+      <meta
+        name="description"
+        content="Track the Egyptian Stock Market (EGX) in real time. Stay informed with live data and expert analysis."
+      />
+      touch .gitignore
       {/* Hero Image */}
       <img
         className="p-2"
@@ -29,7 +26,6 @@ const Welcome = () => {
         width="100%"
         style={{ maxWidth: "100%", height: "auto" }}
       />
-
       {/* Heading and Description */}
       <h1 className="font-bold sm:text-3xl text-xl text-center mt-4">
         Welcome to EGX Tracker
@@ -38,7 +34,6 @@ const Welcome = () => {
         Stay ahead in the Egyptian stock market with real-time data and expert
         analysis.
       </p>
-
       {/* CTA Button */}
       <button
         onClick={handleGetStart}

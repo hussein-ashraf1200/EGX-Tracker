@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Navbar from "../component/Navbar";
-import home from "../assets/home.png";
 import { CiSearch } from "react-icons/ci";
 import { useWatchlist } from "../context/watchListContext";
 import Stocks from "../component/Stocks";
