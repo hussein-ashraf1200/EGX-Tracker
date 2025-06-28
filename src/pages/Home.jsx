@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Navbar from "../component/Navbar";
 import { CiSearch } from "react-icons/ci";
-import { useWatchlist } from "../context/watchListContext";
+import { useWatchlist } from "../context/WatchlistContext";
+git add .
+git commit -m "✅ Fix import path case sensitivity"
+git push
 import Stocks from "../component/Stocks";
 
 const Home = () => {
