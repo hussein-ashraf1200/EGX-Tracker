@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import StockChart from "../component/StockChart";
-import { useWatchlist } from "../context/watchListContext";
+import { useWatchlist } from "../context/WatchlistContext";
 
 const StockDetails = () => {
   const { symbol } = useParams(); // الحصول على رمز السهم من الرابط

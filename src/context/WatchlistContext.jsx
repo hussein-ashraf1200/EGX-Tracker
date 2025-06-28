@@ -1,103 +1,32 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { useUser } from "@clerk/clerk-react";
-import { db } from "../firebase/firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
-
-// إنشاء السياق
-const WatchlistContext = createContext();
-
-// إنشاء المزود
-export const WatchlistProvider = ({ children }) => {
-  const { isLoaded, user } = useUser();
-  const userId = isLoaded && user ? user.id : null;
-
-  const [watchlist, setWatchlist] = useState([]);
-  const [isWatchlistLoaded, setIsWatchlistLoaded] = useState(false); // ✅ لتفادي الحذف
-
-  // تحميل المفضلة من Firestore
-  useEffect(() => {
-    if (!userId) return;
-
-    const fetchWatchlist = async () => {
-      try {
-        const docRef = doc(db, "watchlists", userId);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          setWatchlist(docSnap.data().stocks || []);
-          console.log("📥 Watchlist loaded from Firestore");
-        } else {
-          console.log("ℹ️ No watchlist found for this user");
-        }
-
-        setIsWatchlistLoaded(true); // ✅ تم تحميل البيانات
-      } catch (error) {
-        console.error("❌ Error fetching watchlist:", error);
-      }
-    };
-
-    fetchWatchlist();
-  }, [userId]);
-
-  // حفظ المفضلة في Firestore بعد التحميل فقط
-  useEffect(() => {
-    if (!userId || !isWatchlistLoaded) return;
-
-    const saveWatchlist = async () => {
-      try {
-        // تنظيف البيانات من undefined
-        const cleanedWatchlist = watchlist.map((stock) => {
-          const cleanStock = {};
-          Object.entries(stock).forEach(([key, value]) => {
-            if (value !== undefined) {
-              cleanStock[key] = value;
-            }
-          });
-          return cleanStock;
-        });
-
-        const docRef = doc(db, "watchlists", userId);
-        await setDoc(docRef, { stocks: cleanedWatchlist }, { merge: true });
-        console.log("✅ Watchlist saved to Firestore:", cleanedWatchlist);
-      } catch (error) {
-        console.error("❌ Error saving watchlist:", error);
-      }
-    };
-
-    saveWatchlist();
-  }, [watchlist, userId, isWatchlistLoaded]);
-
-  // إضافة سهم للمفضلة
-  const addToWatchlist = (stock) => {
-    const exists = watchlist.find(
-      (item) => item["01. symbol"] === stock["01. symbol"]
-    );
-    if (!exists) {
-      setWatchlist((prev) => [...prev, stock]);
-      console.log("✅ Added to watchlist:", stock);
-      alert("Add to Watchlist ✅", stock);
-    } else {
-      console.log("⚠️ Stock already in watchlist:", stock["01. symbol"]);
-      alert("⚠️ Stock already in watchlist:", stock["01. symbol"]);
-    }
-  };
-
-  // حذف سهم من المفضلة
-  const removeFromWatchlist = (symbol) => {
-    setWatchlist((prev) =>
-      prev.filter((item) => item["01. symbol"] !== symbol)
-    );
-    console.log("🗑️ Removed from watchlist:", symbol);
-  };
-
-  return (
-    <WatchlistContext.Provider
-      value={{ watchlist, addToWatchlist, removeFromWatchlist }}
-    >
-      {children}
-    </WatchlistContext.Provider>
-  );
-};
-
-// هوك لاستخدام السياق
-export const useWatchlist = () => useContext(WatchlistContext);
+[15:32:13.328] Running build in Washington, D.C., USA (East) – iad1
+[15:32:13.329] Build machine configuration: 2 cores, 8 GB
+[15:32:13.344] Cloning github.com/hussein-ashraf1200/EGX-Tracker (Branch: main, Commit: cfbd61e)
+[15:32:13.352] Skipping build cache, deployment was triggered without cache.
+[15:32:13.708] Cloning completed: 363.000ms
+[15:32:14.017] Running "vercel build"
+[15:32:14.451] Vercel CLI 43.3.0
+[15:32:15.036] Installing dependencies...
+[15:32:23.072] 
+[15:32:23.072] added 374 packages in 8s
+[15:32:23.073] 
+[15:32:23.073] 67 packages are looking for funding
+[15:32:23.073]   run `npm fund` for details
+[15:32:23.119] Running "npm run build"
+[15:32:23.227] 
+[15:32:23.228] > my-project@0.0.0 build
+[15:32:23.228] > vite build
+[15:32:23.228] 
+[15:32:23.504] [36mvite v6.3.5 [32mbuilding for production...[36m[39m
+[15:32:23.815] transforming...
+[15:32:24.609] [32m✓[39m 62 modules transformed.
+[15:32:24.621] [31m✗[39m Build failed in 1.09s
+[15:32:24.622] [31merror during build:
+[15:32:24.622] [31mCould not resolve "../context/watchListContext" from "src/pages/Home.jsx"[31m
+[15:32:24.622] file: [36m/vercel/path0/src/pages/Home.jsx[31m
+[15:32:24.622]     at getRollupError (file:///vercel/path0/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+[15:32:24.622]     at error (file:///vercel/path0/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+[15:32:24.623]     at ModuleLoader.handleInvalidResolvedId (file:///vercel/path0/node_modules/rollup/dist/es/shared/node-entry.js:21408:24)
+[15:32:24.623]     at file:///vercel/path0/node_modules/rollup/dist/es/shared/node-entry.js:21368:26[39m
+[15:32:24.709] Error: Command "npm run build" exited with 1
+[15:32:24.926] 
+[15:32:28.027] Exiting build container
