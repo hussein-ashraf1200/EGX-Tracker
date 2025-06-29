@@ -16,7 +16,6 @@ const Welcome = () => {
         name="description"
         content="Track the Egyptian Stock Market (EGX) in real time. Stay informed with live data and expert analysis."
       />
-      touch .gitignore
       {/* Hero Image */}
       <img
         className="p-2"
