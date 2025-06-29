@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 // Lazy-loaded pages
 const Welcome = lazy(() => import("./pages/Welcome"));
@@ -13,6 +14,8 @@ const StockDetails = lazy(() => import("./pages/StockDetails"));
 export default function App() {
   return (
     <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+      <Toaster position="top-right" />
+
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />

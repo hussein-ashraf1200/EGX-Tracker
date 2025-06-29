@@ -52,10 +52,6 @@ const Navbar = () => {
 
       {/* profile & notifications */}
       <div className="hidden sm:flex flex-row gap-2 p-2 items-center relative">
-        <div className="bg-[#EBEDF2] p-2 text-xl rounded-xl">
-          <IoMdNotificationsOutline />
-        </div>
-
         {/* profile image with dropdown */}
         <div className="relative">
           <img

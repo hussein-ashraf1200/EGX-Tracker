@@ -3,6 +3,7 @@ import Navbar from "../component/Navbar";
 import { CiSearch } from "react-icons/ci";
 import { useWatchlist } from "../context/WatchlistContext";
 import Stocks from "../component/Stocks";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const [stocks, setStocks] = useState([]);
@@ -35,7 +36,22 @@ const Home = () => {
         "06. volume": data.volume,
       };
 
-      setStocks([stock]);
+      let alreadyExists = false;
+
+      setStocks((preStocks) => {
+        const exsite = preStocks.find(
+          (s) => s["01. symbol"] === stock["01. symbol"]
+        );
+        if (exsite) {
+          alreadyExists = true;
+          return preStocks;
+        }
+        return [...preStocks, stock];
+      });
+
+      if (alreadyExists) {
+        toast.success("Already exists ✅");
+      }
     } catch (error) {
       console.error("❌ API fetch failed:", error);
     }
@@ -140,9 +156,16 @@ const Home = () => {
                       <td className="border px-4 py-2">
                         <button
                           onClick={() => addToWatchlist(stock)}
-                          className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition"
+                          className=" text-white px-2 py-1 rounded hover:bg-blue-600 transition"
                         >
-                          + Add
+                          <img
+                            className="w-5 h-5 object-contain"
+                            src="https://res.cloudinary.com/ddigrrkv7/image/upload/f_auto,q_auto,w_20/v1751184198/add_o99r9k.svg"
+                            alt="Add to watchlist icon"
+                            loading="lazy"
+                            width="4"
+                            height="5"
+                          />
                         </button>
                       </td>
                     </tr>

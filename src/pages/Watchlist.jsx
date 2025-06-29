@@ -15,9 +15,10 @@ const Watchlist = () => {
   return (
     <div>
       <Navbar />
-      <h1 className="text-2xl font-bold my-4">My Watchlist</h1>
-
-      <div className="mt-8 w-full flex justify-center px-4">
+      <h1 className="text-2xl  flex justify-center items-center font-bold my-4">
+        My Watchlist
+      </h1>
+      <div className="mt-8 w-full flex  justify-center px-4">
         <div className="overflow-x-auto">
           {watchlist.length === 0 ? (
             <p>No stocks added yet.</p>
@@ -25,7 +26,6 @@ const Watchlist = () => {
             <table className="min-w-max border border-gray-400 text-center">
               {/* رأس الجدول */}
               <thead>
-                {""}
                 <tr>
                   <th className="border p-2">Symbol</th>
                   <th className="border p-2">Company</th>
@@ -34,7 +34,7 @@ const Watchlist = () => {
                   <th className="border p-2">Percent</th>
                   <th className="border p-2">Date</th>
                   <th className="border p-2">Volume</th>
-                  <th className="border p-2">Watchlist</th>
+                  <th className="border p-2">Remove</th>
                   <th className="border p-2">Details</th>
                 </tr>
               </thead>
@@ -59,9 +59,14 @@ const Watchlist = () => {
                       <button
                         onClick={() => removeFromWatchlist(stock["01. symbol"])}
                       >
-                        <div className="text-red-500 text-xl">
-                          <IoIosRemoveCircleOutline />
-                        </div>
+                        <img
+                          className="w-5 h-5 object-contain"
+                          src="https://res.cloudinary.com/ddigrrkv7/image/upload/v1751184198/bin_adk2dl.svg"
+                          alt="Add to watchlist icon"
+                          loading="lazy"
+                          width="4"
+                          height="5"
+                        />
                       </button>
                     </td>
                     <td className="border px-4 py-2">

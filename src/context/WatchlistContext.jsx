@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { db } from "../firebase/firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
+import toast from "react-hot-toast";
 
 // إنشاء السياق
 const WatchlistContext = createContext();
@@ -74,11 +75,10 @@ export const WatchlistProvider = ({ children }) => {
     );
     if (!exists) {
       setWatchlist((prev) => [...prev, stock]);
-      console.log("✅ Added to watchlist:", stock);
-      alert("Add to Watchlist ✅", stock);
+
+      toast.success("Add to Watchlist ❤️");
     } else {
-      console.log("⚠️ Stock already in watchlist:", stock["01. symbol"]);
-      alert("⚠️ Stock already in watchlist:", stock["01. symbol"]);
+      toast.success("Stock already in watchlist ⚠️");
     }
   };
 
@@ -87,7 +87,7 @@ export const WatchlistProvider = ({ children }) => {
     setWatchlist((prev) =>
       prev.filter((item) => item["01. symbol"] !== symbol)
     );
-    console.log("🗑️ Removed from watchlist:", symbol);
+    toast.success(" Removed from watchlist 🗑️");
   };
 
   return (
