@@ -27,7 +27,7 @@ const Navbar = () => {
       {/* logo */}
       <div className="flex items-center gap-2 p-2">
         <img
-          src="https://res.cloudinary.com/ddigrrkv7/image/upload/v1751109880/logo_bsjvmp.png"
+          src="https://res.cloudinary.com/ddigrrkv7/image/upload/f_auto,q_auto/v1751109880/logo_bsjvmp.png"
           loading="lazy"
           alt="logo image"
         />

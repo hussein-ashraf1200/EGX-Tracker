@@ -48,8 +48,10 @@ const Home = () => {
         <img
           className="p-2"
           loading="lazy"
-          src="https://res.cloudinary.com/ddigrrkv7/image/upload/v1751109880/home_heqjub.png"
+          src="https://res.cloudinary.com/ddigrrkv7/image/upload/f_auto,q_auto,w_800/v1751109880/home_heqjub.png"
           alt="home"
+          width="800"
+          height="auto"
         />
 
         {/* company names */}
