@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 import { useClerk } from "@clerk/clerk-react";
@@ -100,6 +99,15 @@ const Navbar = () => {
 
           <li className="hover:bg-sky-300 rounded-2xl p-1">
             <Link to="/watchlist">WatchList</Link>
+          </li>
+          <li>
+            {" "}
+            <button
+              onClick={handleSignOut}
+              className="block w-full px-4 py-2 text-left text-red-600 hover:bg-gray-100"
+            >
+              🚪 Sign out
+            </button>
           </li>
         </ul>
       )}
